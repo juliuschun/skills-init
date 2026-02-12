@@ -1,0 +1,10 @@
+{
+  "name": "init-project",
+  "description": "Bootstrap or audit projects with principled CLAUDE.md + plan.md + codify.md. Auto-detects tech stack, applies tech-lead analysis, validates output.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Julius"
+  },
+  "repository": "https://github.com/juliuschun/skills-init",
+  "license": "MIT"
+}

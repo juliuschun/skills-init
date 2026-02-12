@@ -70,9 +70,9 @@ The user can override with `/init-project audit` or `/init-project init`.
 
 ---
 
-## Audit Mode (기존 파일 감사)
+## Audit Mode (기존 파일 감사 및 재정리)
 
-When CLAUDE.md already exists, run an upgrade analysis:
+When CLAUDE.md already exists — even if it's messy, bloated, or disorganized — this mode cleans it up. Works on any complexity level: from a 20-line stub to a 500-line monster.
 
 ### Step 1: Score Existing CLAUDE.md
 
@@ -98,15 +98,36 @@ Check if these sections exist and are well-formed:
 6. Gotchas (real time-savers?)
 7. Decision Hygiene (present?)
 
-### Step 3: Propose Improvements
+### Step 3: Reorganize (재정리)
 
-Show a **diff preview** of proposed changes:
-- Lines to DELETE (failed quality checks)
-- Lines to ADD (missing sections)
-- Lines to REWRITE (rules → principles)
-- Sections to EXTRACT (to `.claude/rules/` if over 100 lines)
+For complex/bloated files, propose a full reorganization:
 
-### Step 4: Validate
+**Triage**: Classify every line in the existing CLAUDE.md into one of:
+- **KEEP** — passes deletion test, belongs in CLAUDE.md
+- **MOVE** — valuable but belongs in `.claude/rules/`, plan.md, or codify.md
+- **REWRITE** — environment-specific rule → portable principle
+- **DELETE** — fails deletion test, linter handles it, or Claude already knows it
+
+**Extraction plan** (for files > 100 lines):
+- Testing rules → `.claude/rules/testing.md` (with globs frontmatter)
+- API patterns → `.claude/rules/api-patterns.md`
+- Domain terms → `.claude/rules/domain-terms.md`
+- Architecture decisions → plan.md (Architecture Decisions section)
+- Historical learnings → codify.md (append-only)
+- Current task context → remove (ephemeral, shouldn't be in CLAUDE.md)
+
+**Output**: A reorganized CLAUDE.md (< 100 lines) + extracted `.claude/rules/` files + updated plan.md/codify.md if needed.
+
+### Step 4: Propose Changes
+
+Show a **diff preview** for each file:
+- What will be CHANGED in CLAUDE.md (deletions, additions, rewrites)
+- What NEW files will be created (`.claude/rules/*.md`, plan.md, codify.md)
+- What will be MOVED (with source → destination mapping)
+
+Ask user to approve before applying any changes.
+
+### Step 5: Validate
 
 Same as Init Mode Phase 4. Also check:
 - Does plan.md exist? Propose creation if not.

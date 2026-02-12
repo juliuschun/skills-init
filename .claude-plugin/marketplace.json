@@ -1,0 +1,24 @@
+{
+  "name": "init-project-marketplace",
+  "owner": {
+    "name": "juliuschun"
+  },
+  "metadata": {
+    "description": "Project initialization and CLAUDE.md management skills",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "init-project",
+      "source": "./",
+      "description": "Bootstrap or audit projects with principled CLAUDE.md + plan.md + codify.md. Two modes: init (new projects) and audit (reorganize existing). Auto-detects tech stack, applies tech-lead analysis, validates output.",
+      "version": "1.0.0",
+      "author": {
+        "name": "juliuschun"
+      },
+      "skills": ["./skills/init-project"],
+      "category": "development",
+      "tags": ["project-setup", "claude-md", "initialization", "audit"]
+    }
+  ]
+}
